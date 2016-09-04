@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="container">
+    <canvas id="cavsElem">
+        你的浏览器不支持canvas，请升级浏览器
+    </canvas>
+</div>
+
+<script>
+    (function () {
+        var canvas = document.querySelector('#cavsElem');
+        var ctx = canvas.getContext('2d');
+
+        canvas.width = 600;
+        canvas.height = 600;
+        canvas.style.border = "1px solid #000";
+
+        var x=100,y=100,radius = 10,width =300,height =100;
+        ctx.strokeStyle="red";
+
+        ctx.moveTo(x+radius,y);
+        ctx.lineTo(x+width-radius,y);
+
+        ctx.moveTo(x+width,y+radius);
+        ctx.lineTo(x+width,y+height-radius);
+
+        ctx.moveTo(x+width-radius,y+height);
+        ctx.lineTo(x+radius,y+height);
+
+        ctx.moveTo(x,y+height-radius);
+        ctx.lineTo(x,y+radius);
+
+
+        //左上角
+        ctx.moveTo(x+radius,y);
+        ctx.arcTo(x,y,x,y+radius,radius);
+
+        //右上角
+        ctx.moveTo(x+width-radius,y);
+        ctx.arcTo(x+width,y,x+width,y+radius,radius);
+
+        //右下角
+        ctx.moveTo(x+width,y+height-radius);
+        ctx.arcTo(x+width,y+height,x+width-radius,y+height,radius);
+
+        //左下角
+        ctx.moveTo(x,y+height-radius);
+        ctx.arcTo(x,y+height,x+radius,y+height,radius);
+
+        ctx.stroke();
+
+    }());
+</script>
+</body>
+</html>
